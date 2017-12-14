@@ -1,0 +1,9 @@
+version  : '3.3'
+
+services:
+    deamon:
+        build:
+            context: .
+            dockerfile: deamon.image
+        volumes:
+        - ./:/data

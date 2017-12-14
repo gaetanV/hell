@@ -1,0 +1,12 @@
+FROM python:3
+RUN apt-get update;
+RUN apt-get install gcc -y;
+COPY ./app /app
+WORKDIR /app
+
+RUN gcc deamon.c -o deamon.exe
+RUN gcc -fPIC -c channel.c
+RUN gcc -shared -o channel.dll channel.o
+
+CMD ["python","run.py"]
+
