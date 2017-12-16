@@ -1,6 +1,7 @@
+/**/.idea/*
 /**/.vscode/*
-*.pyc
-*.o
-*.exe
-*.dll
-*.txt
+/**/*.exe
+/**/*.o
+/**/*.txt
+/**/*.dll
+/**/test/*

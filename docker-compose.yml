@@ -5,5 +5,3 @@ services:
         build:
             context: .
             dockerfile: deamon.image
-        volumes:
-        - ./:/data

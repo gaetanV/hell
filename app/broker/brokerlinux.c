@@ -9,7 +9,6 @@
 #include <signal.h>
 
 char *mem ;
-FILE* fp;
 int shmid ;
 
 int memory(int size, int cle){
@@ -25,7 +24,6 @@ int memory(int size, int cle){
 }
 
 void quit() {
-  fclose(fp);
   shmctl(shmid,IPC_RMID,NULL) ;
   exit(0);
 }
@@ -35,10 +33,9 @@ void ping(){
 }
 
 
-int main(int argc, char* argv[])
+int brokerlinux()
 {
     
-  
     pid_t process_id;
     pid_t sid = 0;
     
@@ -56,7 +53,7 @@ int main(int argc, char* argv[])
     strcpy(mem,"DEAMON START\n");
 
     process_id = fork();
-      if (process_id < 0)
+    if (process_id < 0)
     {
       printf("fork failed!\n");
       exit(1);
@@ -73,17 +70,7 @@ int main(int argc, char* argv[])
     {
       exit(1);
     }
-   
-    FILE* fp = fopen ("memory.txt", "w+");
 
-    while (1)
-    {
-      sleep(1);
-      fprintf(fp, mem);
-      fflush(fp);
-    }
-    fclose(fp);
-    return (0);
+    return 0;
   
 }
- 

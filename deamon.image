@@ -4,9 +4,9 @@ RUN apt-get install gcc -y;
 COPY ./app /app
 WORKDIR /app
 
-RUN gcc deamon.c -o deamon.exe
-RUN gcc -fPIC -c channel.c
-RUN gcc -shared -o channel.dll channel.o
+RUN gcc ./broker/broker.c -o ./broker/broker.exe
+RUN gcc -fPIC -c ./interface/channellinux.c
+RUN gcc -shared -o ./interface/channellinux.dll channellinux.o
 
-CMD ["python","run.py"]
+CMD ["python","linux.py"]
 

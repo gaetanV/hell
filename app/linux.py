@@ -11,7 +11,7 @@ from ctypes import (CFUNCTYPE, POINTER,
                     c_bool, c_char, c_char_p, c_int, c_uint, c_void_p)
 
 sp = subprocess.Popen(
-        "./deamon.exe",            
+        "./broker/broker.exe",            
         stdin = subprocess.PIPE, 
         stdout = subprocess.PIPE, close_fds=True
 )
@@ -21,7 +21,7 @@ index = str(response.decode()).split(",")
 print(index)
 C = c_uint(int(index[0]))
 
-PING = cdll.LoadLibrary("./channel.dll")
+PING = cdll.LoadLibrary("./interface/channellinux.dll")
 PING.token(C)
 
 try:
