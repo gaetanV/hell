@@ -1,5 +1,7 @@
 import subprocess
 import time
+import struct
+
 from ctypes import (CFUNCTYPE, POINTER,
                     cast, cdll, util,
                     c_bool, c_char, c_char_p, c_int, c_uint, c_void_p)
@@ -9,7 +11,13 @@ sp = subprocess.call("./broker/broker.exe A -store=mem,400 -broker=B1,B2 -delive
 #sp = subprocess.call("./broker.exe C -store=file     -broker=B1   -delivery=outer -brokermode=unique   -archive=true")
 
 time.sleep(1)
-PING = cdll.LoadLibrary("./interface/channelwindow.dll")
+
+
+if (int(struct.calcsize("P")) == 4):
+    PING = cdll.LoadLibrary("./interface/channelwindow32.dll")
+else: 
+    PING = cdll.LoadLibrary("./interface/channelwindow64.dll")
+
 a = c_char_p(''.encode('utf-8'))
 PING.get(a)
 print (a.value)
